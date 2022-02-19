@@ -19,9 +19,14 @@
 						value: award.awarder,
 						classes: 'article__subtitle'
 					}) %>
+					<%~ include('key-url-item', {
+						label: it.resume.settings?.labels?.categoryProperty?.award?.website, 
+						value: award.website,
+						classes: 'article__url'
+					}) %>
 					<%~ include('key-value-item', {
 						label: it.resume.settings?.labels?.categoryProperty?.award?.date, 
-						value: it.formatDate(award.date, it.resume.settings),
+						value: award.date,
 						classes: 'article__date'
 					}) %>
 				</div>

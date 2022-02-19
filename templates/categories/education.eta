@@ -20,12 +20,10 @@
 						classes: 'article__subtitle'
 					}) %>
 					<%~ include('date-range', {
-						formatDate: it.formatDate, 
 						startDate: education.startDate,
 						endDate: education.endDate,
 						present: education.present,
-						settings: it.resume.settings,
-						classes: 'article__date'
+						classes: 'article__date article__date--horizontal'
 					}) %>
 				</div>
 				<div class="article-content s-grid">

@@ -1,10 +1,10 @@
-<section id="languages" class="certifications">
+<section id="languages" class="languages">
 	<% if(it.resume.settings?.labels?.categoryProperty?.language?.categoryTitle) { %>
 		<header class="section__title">
 			<%= it.resume.settings.labels.categoryProperty.language.categoryTitle %>
 		</header>
 	<% } %>
-	<div class="article-container grid">
+	<div class="article-container">
 		<% it.resume?.languages.forEach(function(language) { %>
 			<article>
 				<%~ include('nav', {categoryKey: it.resume?.settings?.categoryKeys?.language, showDelete: true, id: language.id}) %>
