@@ -4,7 +4,7 @@
 			<%= it.resume.settings.labels.categoryProperty.skill.categoryTitle %>
 		</header>
 	<% } %>
-	<div class="article-container">
+	<div class="article-container two-column">
 		<% Object.entries(it.resume?.skills.reduce(function (r, a) { r[a.category] = r[a.category] || []; r[a.category].push(a); return r; }, Object.create(null))).forEach(([category, data]) => { %>
 			<article>
 			<%~ include('key-value-item', {

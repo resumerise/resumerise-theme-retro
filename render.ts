@@ -25,7 +25,6 @@ export const render = async (
       import.meta.url,
     );
     const mainCss = await getFileContent("./css/main.css", import.meta.url);
-
     const awardTemplateName = "awards";
     eta.templates.define(
       awardTemplateName,
