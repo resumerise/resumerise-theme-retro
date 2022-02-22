@@ -33,6 +33,10 @@
     Title color
     */
     --title-color: #292523;
+    /*
+    Url color
+    */
+    --url-color: #292523;
     /* 
     Text color
     */
@@ -49,7 +53,6 @@
     Content text color
     */
     --content-text-color: black;
-    /*========== FONT & TYPORGRAPHY ==========*/
     /* 
     Body font
     */
@@ -86,12 +89,94 @@
     Smaller font size
     */
     --smaller-font-size: .75rem;
-    /*========== FONT WEIGHT ==========*/
-    --font-500: 500;
-    --font-600: 600;
-    --font-700: 700;
-    --font-800: 800;
-    /*========== MARGINS ==========*/
+    /* 
+    Vertical gap between items withing article (content)
+    */
+    --article-row-gap: 1.2em;
+    /* 
+    Horizontal gap between items withing article (content)
+    */
+    --article-column-gap: 1em;
+    /*
+    Left margin of list items
+    */
+    --list-margin-left: 2rem;
+    /*
+    Vertical gap between sections 
+    */
+    --section-gap: 5em;
+    /*
+    Label width
+    */
+    --label-width: 7em;
+    /*
+    Vertical/Horiontal gap between articles withint two-column container
+    */
+    --article-container-row-gap: 3em;
+    /*
+    Width of article logo
+    */
+    --article-logo-img-width: 4em;
+    /*
+    Basics gap content
+    */
+    --basics-content-gap: 1em;
+    /*
+    Basics profile image height
+    */
+    --basics-picture-img-height: 15em;
+    /*
+    Basics column gap
+    */
+    --basics-column-gap: 5em;
+    /*
+    Skill rating bar height
+    */
+    --skill-rating-height: 1em;
+    /*
+    Skill border
+    */
+    --skill-rating-border: 2px solid #333;
+    /*
+    Skill container background color 
+    */
+    --skill-rating-background: #333;
+    /*
+    Skill container border color
+    */
+    --skill-rating-border-radius: 5em;
+    /*
+    Skill progress backgroind color
+    */
+    --skill-rating-progress-background-color: #FF9932;
+    /*
+    Body padding for sm
+    */
+    --body-padding-sm: 2em;
+    /*
+    Body padding for md
+    */
+    --body-padding-md: 10em;
+    /*
+    Column width of article date
+    */
+    --article-date-width: 6em;
+    /*
+    Column width of article logo
+    */
+    --article-logo-width: 4em;
+    /*
+    Date range items gap
+    */
+    --date-gap: 0.1em;
+    /*
+    Font size of page margins
+    */
+    --print-margin-font-size: .9em;
+    /*
+    Social icons gap
+    */
+    --profiles-icon-gap: 2em;
     --mb-0-25: 0.25rem;
     --mb-0-5: 0.5rem;
     --mb-0-75: 0.75rem;
@@ -100,35 +185,25 @@
     --mb-2: 2rem;
     --mb-2-5: 2.5rem;
     --mb-3: 3rem;
-    /*========== Z INDEX ==========*/
+    /*~~~~~~~~~~ z-index ~~~~~~~~~~*/
     --z-tooltip: 10;
     --z-fixed: 100;
     --z-modal: 1000;
-    /*========== RESPONSIVE DIMENSIONS ==========*/
+    /*~~~~~~~~~~ responsive dimensions ~~~~~~~~~~*/
     --dim-xs: 0;
     --dim-sm: 576px;
     --dim-md: 768px;
     --dim-lg: 992px;
     --dim-xl: 1200px;
     --dim-xxl: 1400px;
+    /*~~~~~~~~~~ font weight ~~~~~~~~~~*/
+    --font-500: 500;
+    --font-600: 600;
+    --font-700: 700;
+    --font-800: 800;
 }
 
-/*========== FONT SIZE FOR LARGER SCREENS ==========*/
-@media screen and (min-width: 968px) {
-    :root {
-        --biggest-font-size: 5rem;
-        --bigger-font-size: 4rem;
-        --home-title-font-size: 3rem;
-        --h1-font-size: 2.25rem;
-        --h2-font-size: 1.5rem;
-        --h3-font-size: 1.25rem;
-        --normal-font-size: 1rem;
-        --small-font-size: .875rem;
-        --smaller-font-size: .813rem;
-    }
-}
-
-/*========== BASE ==========*/
+/*======================================== BASE ========================================*/
 html {
     scroll-behavior: smooth;
 }
@@ -138,39 +213,6 @@ body {
     font-size: var(--normal-font-size);
     color: var(--content-text-color);
     font-family: var(--body-font);
-}
-
-@media screen {
-
-    .margin-box {
-        display: none;
-    }
-
-    body {
-        line-height: var(--layout-default-line-height);
-        margin: 3em 0;
-        padding: 10em;
-        margin-bottom: 5em;
-    }
-}
-
-.margin-box {
-    font-size: 3.5mm;
-}
-
-.available-from-print .icon {
-    margin-top: 1.5mm;
-    margin-left: 1.5mm;
-    font-size: 2mm;
-    position: absolute;
-}
-
-.available-from-print.now-available-yes i {
-    color: green;
-}
-
-.available-from-print.now-available-no i {
-    color: red;
 }
 
 .counter-reset {
@@ -208,7 +250,7 @@ ul {
 }
 
 li {
-    margin-left: 2rem;
+    margin-left: var(--list-margin-left);
     list-style: circle;
 }
 
@@ -216,11 +258,42 @@ a {
     color: var(--content-text-color);
     text-decoration: none;
 }
-/*========== SECTION ==========*/
-section {
-    padding: 2rem 0 2rem;
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--section-gap);
 }
 
+.avoid-break-inside {
+    display: block !important; /* never user flex with page-break */
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.avoid-break-inside-column {
+    display: block !important; /* never user flex with page-break */
+    -webkit-column-break-inside: avoid-column;
+    page-break-inside: avoid-column;
+    break-inside: avoid-column;
+}
+/*======================================== SKILLS ========================================*/
+.skills .article-container .skill-item > * {
+    margin-bottom: 0.5em;
+}
+
+.skills .article-container .skill-item > *:last-child {
+    margin-bottom: 0;
+}
+
+.skills .article-container .article__title {
+    display: flex;
+    flex-direction: column;
+    gap: var(--article-row-gap);
+}
+
+/*======================================== SECTION ========================================*/
 .section__title {
     position: relative;
     font-size: var(--h1-font-size);
@@ -230,17 +303,11 @@ section {
     margin-bottom: var(--mb-1-5);
 }
 
-/*========== ARTICLE ==========*/
-.article__date {
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: start;
-}
-
+/*======================================== ARTICLE ========================================*/
 .article-content {
     display: flex;
     flex-direction: column;
-    gap: 1.2em;
+    gap: var(--article-row-gap);
 }
 
 .article-header {
@@ -259,10 +326,6 @@ section {
     font-size: var(--h2-font-size);
 }
 
-.article__list .item__value {
-    page-break-inside: avoid;
-}
-
 .article__subtitle {
     font-weight: var(--font-700);
     font-size: var(--h3-font-size);
@@ -271,11 +334,7 @@ section {
 }
 
 .article-logo img {
-    width: 4em;
-}
-
-.article-logo {
-    padding-right: 10px;
+    width: var(--article-logo-img-width);
 }
 
 .article__list {
@@ -284,7 +343,7 @@ section {
 }
 
 .article__list label {
-    width: 100px;
+    min-width: var(--label-width);
 }
 
 .article__list ul {
@@ -305,45 +364,25 @@ section {
 }
 
 .article__url {
-    color: #7F7D7B;
+    color: var(--url-color);
 }
 
 .article__description {
     margin-top: var(--mb-1);
 }
 
-/*========== LAYOUT ==========*/
 .article-container:not(.two-column) {
     display: flex;
     flex-direction: column;
-    gap: 4em;
-}
-
-/*========== HOME SECTION ==========*/
-.home__title {
-    font-size: var(--home-title-font-size);
-    font-weight: var(--font-800);
-    line-height: 1.2;
-    margin-top: var(--mb-1);
-}
-
-.home__subtitle {
-    font-weight: 600;
-    font-size: var(--h3-font-size);
-    line-height: 1;
-    margin-top: var(--mb-0-5);
-}
-
-.home__description {
-    margin-top: var(--mb-1);
+    gap: var(--article-container-row-gap);
 }
 
 /*========== PROFILES ==========*/
 .profiles .article-container {
     flex-direction: row;
     display: flex;
-    column-gap: 2em;
-    width: 25em;
+    gap: var(--profiles-icon-gap);
+    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: baseline;
     align-content: center;
@@ -354,7 +393,7 @@ section {
     color: var(--icon-social-color);
 }
 
-/*========== ICONS ==========*/
+/*======================================== ICONS ========================================*/
 .icon {
     font-style: normal;
     margin-right: 0;
@@ -397,7 +436,7 @@ section {
     content: "\f08c";
 }
 
-/*========== BASICS ==========*/
+/*======================================== BASICS ========================================*/
 .basics header {
     display: none;
 }
@@ -405,101 +444,94 @@ section {
 .basics .article-container {
     display: flex;
     flex-direction: row;
-    gap: 2em;
+    gap: var(--basics-column-gap);
+    justify-content: center;
     align-items: center;
 }
 
 .basics .article-container .right {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: var(--basics-content-gap);
 }
 
 .basics .picture img {
-    height: 8cm;
+    height: var(--basics-picture-img-height);
     width: auto;
     border-radius: 50%;
 }
 
-/*========== INTERACTIVE ==========*/
-.INTERACTIVE .nav-add {
-    margin-top: 1em;
-    margin-bottom: 2em;
-}
-
-.INTERACTIVE .profiles article {
-    padding: 2em 0;
-}
-
-.INTERACTIVE .profiles .article-container {
-    display: flex;
-    flex-direction: column;
-}
-
-html:not(.INTERACTIVE) .profiles article .profile-item {
-    display: inline-block;
-}
-
-/*========== WIDGETS ==========*/
+/*======================================== WIDGETS ========================================*/
 /* Rating */
 .skill-rating {
     -webkit-print-color-adjust: exact;
-    height: 20px;
-    margin: 5px 0 3px;
-    border: 2px solid #333;
-    background: #333;
+    height: var(--skill-rating-height);
+    border: var(--skill-rating-border);
+    background: var(--skill-rating-background);
     overflow: hidden;
-    border-radius: 50px;
-    -moz-border-radius: 50px;
-    -webkit-border-radius: 50px;
+    border-radius: var(--skill-rating-border-radius);
+    -moz-border-radius: var(--skill-rating-border-radius);
+    -webkit-border-radius: var(--skill-rating-border-radius);
 }
 
 .skill-rating > div {
     height: 100%;
-    border-radius: 50px;
-    background-color: #FF9932 !important;
+    border-radius: var(--skill-rating-border-radius);
+    background-color: var(--skill-rating-progress-background-color);
 }
 
-/*========== PLATFORM ==========*/
-/*~~~~~~~~~~~~~ SM ~~~~~~~~~~~~~*/
-@media screen and (max-width: var(--dim-md)) {
+/*======================================== PLATFORM ========================================*/
+/*~~~~~~~~~~~~~ screen ~~~~~~~~~~~~~*/
+@media screen {
+    .margin-box {
+        display: none;
+    }
+
+    body {
+        line-height: var(--layout-default-line-height);
+        margin: 0;
+    }
+
+    .article-container.two-column article {
+        margin-bottom: var(--article-row-gap);
+    }
+}
+
+/*~~~~~~~~~~~~~ small screens ~~~~~~~~~~~~~*/
+@media screen and (max-width: 768px) {
+    body {
+        padding: var(--body-padding-sm);
+    }
+
     .basics .article-container {
         display: flex;
         flex-direction: column;
     }
-}
 
-/*~~~~~~~~~~~~~ PRINT, TABLET + DESKTOP ~~~~~~~~~~~~~*/
-@media print, screen and (min-width: 968px) {
-    .article-container.two-column {
-        -moz-column-count: 2;
-        -webkit-column-count: 2;
-        column-count: 2;
+    .basics .article-container .right {
+        align-items: center;
     }
-    
-    .article-container.two-column article {
-        -webkit-column-break-inside: avoid;
-        page-break-inside: avoid;
-        break-inside: avoid;
-        margin-bottom: 0.5cm;
-    }
-    
+
     article.three-column {
         display: grid;
-        row-gap: 1.2em;
-        grid-template-columns: 7em auto 4em;
+        align-items: flex-start;
         grid-template-areas: 
-            "date header logo"
-            ". content ."; 
+            "header logo"
+            "date date"
+            "content content"; 
+        row-gap: var(--article-row-gap);
+        grid-template-columns: auto var(--article-logo-width);
     }
 
     article.two-column {
         display: grid;
-        row-gap: 1.2em;
-        grid-template-columns: 7em auto;
+        align-items: flex-start;
         grid-template-areas: 
-            "date header"
-            ". content"; 
+            "header"
+            "date"
+            "content"; 
+        row-gap: var(--article-row-gap);
+        grid-template-columns: auto;
     }
 
     .article-head {
@@ -512,12 +544,9 @@ html:not(.INTERACTIVE) .profiles article .profile-item {
 
     .article__date {
         grid-area: date;
-    }
-    
-    .article__date--horizontal {
         display: flex;
         flex-direction: row;
-        gap: 0.7em;
+        gap: var(--date-gap);
     }
 
     .article-content {
@@ -525,7 +554,94 @@ html:not(.INTERACTIVE) .profiles article .profile-item {
     }
 }
 
-/*~~~~~~~~~~~~~ PRINT ~~~~~~~~~~~~~*/
+/*~~~~~~~~~~~~~ desktop ~~~~~~~~~~~~~*/
+@media screen and (min-width: 992px) {
+    body {
+        padding: var(--body-padding-md) calc(var(--body-padding-md) * 1.2);
+    }
+}
+
+/*~~~~~~~~~~~~~ tablets ~~~~~~~~~~~~~*/
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    body {
+        padding: var(--body-padding-md);
+    }
+}
+
+/*~~~~~~~~~~~~~ > tablets + desktop & print ~~~~~~~~~~~~~*/
+@media print, screen and (min-width: 768px) {
+    :root {
+        --biggest-font-size: 5rem;
+        --bigger-font-size: 4rem;
+        --home-title-font-size: 3rem;
+        --h1-font-size: 2.25rem;
+        --h2-font-size: 1.5rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --small-font-size: .875rem;
+        --smaller-font-size: .813rem;
+    }
+
+    .article-container.two-column {
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
+
+    .article-container.two-column .article-content {
+        display: block;
+    }
+
+    .article-container.two-column .article__list li {
+        -webkit-column-break-inside: avoid;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    
+    article.three-column {
+        display: grid;
+        align-items: flex-start;
+        grid-template-areas: 
+            "date header logo"
+            ". content content"; 
+        row-gap: var(--article-row-gap);
+        column-gap: var(--article-column-gap);
+        grid-template-columns: var(--article-date-width) auto var(--article-logo-width);
+    }
+
+    article.two-column {
+        display: grid;
+        align-items: flex-start;
+        column-gap: var(--article-column-gap);
+        grid-template-areas: 
+            "date header"
+            ". content"; 
+        row-gap: var(--article-row-gap);
+        grid-template-columns: var(--article-date-width) auto;
+    }
+
+    .article-head {
+        grid-area: header;
+    }
+
+    .article-log {
+        grid-area: logo;
+    }
+
+    .article__date {
+        grid-area: date;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: var(--date-gap);
+    }
+
+    .article-content {
+        grid-area: content;
+    }
+}
+
+/*~~~~~~~~~~~~~ print ~~~~~~~~~~~~~*/
 @media print {
     .profiles,
     .basics {
@@ -533,16 +649,20 @@ html:not(.INTERACTIVE) .profiles article .profile-item {
     }
 
     .pagedjs_margin {
-        font-size: 3.5mm;
+        font-size: var(--print-margin-font-size);
     }
 
     /* table of contents */
-    .table-of-contents {
-        page: table-of-contents;
-    }
-
     @page table-of-contents {
         @top-right {
+            content: none;
+        }
+
+        @top-left {
+            content: none;
+        }
+
+        @bottom-right {
             content: none;
         }
 
@@ -551,13 +671,17 @@ html:not(.INTERACTIVE) .profiles article .profile-item {
         }
     }
 
+    .table-of-contents {
+        page: table-of-contents;
+    }
+
     .toc-header {
         margin-bottom: 1rem;
         border-bottom: 0.375rem solid black;
     }
 
     ol, ul {
-        padding-inline-start: 0px;
+        padding-inline-start: 0;
     }
 
     ol, ul a {
@@ -609,7 +733,9 @@ html:not(.INTERACTIVE) .profiles article .profile-item {
         background-color: white;
     }
 
-    @page table-of-contents {
+    /* Cover */
+    @page: first {
+
         @top-right {
             content: none;
         }
@@ -627,7 +753,6 @@ html:not(.INTERACTIVE) .profiles article .profile-item {
         }
     }
 
-    /* Cover */
     .page-break {
         break-after: page;
     }
@@ -650,6 +775,7 @@ html:not(.INTERACTIVE) .profiles article .profile-item {
 
     .cover-page .main-skills .list__label {
         font-size: 14pt;
+        text-align: center;
     }
 
     .cover-page .main-skills li {
@@ -706,9 +832,14 @@ html:not(.INTERACTIVE) .profiles article .profile-item {
         gap: 0.7cm;
     }
 
+    .cover-page__social {
+        display: flex;
+        flex-direction: row;
+        gap: 2em;
+    }
+
     .cover-page__social .icon {
         font-size: 16pt;
-        margin-left: 3mm;
     }
 
     .cover-page__header .summary {
@@ -716,22 +847,38 @@ html:not(.INTERACTIVE) .profiles article .profile-item {
         margin-top: 0.5em;
     }
 
-    @page: first {
-
-        @top-right {
-            content: none;
-        }
-
-        @top-left {
-            content: none;
-        }
-
-        @bottom-right {
-            content: none;
-        }
-
-        @bottom-left {
-            content: none;
-        }
+    /* availability */    
+    .available-from-print .icon {
+        margin-top: 1.5mm;
+        margin-left: 1.5mm;
+        font-size: 2mm;
+        position: absolute;
     }
+    
+    .available-from-print.now-available-yes i {
+        color: green;
+    }
+    
+    .available-from-print.now-available-no i {
+        color: red;
+    }
+}
+
+/*======================================== INTERACTIVE ========================================*/
+.INTERACTIVE .nav-add {
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+.INTERACTIVE .profiles article {
+    padding: 2em 0;
+}
+
+.INTERACTIVE .profiles .article-container {
+    display: flex;
+    flex-direction: column;
+}
+
+html:not(.INTERACTIVE) .profiles article .profile-item {
+    display: inline-block;
 }
