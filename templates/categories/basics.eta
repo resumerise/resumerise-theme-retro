@@ -2,7 +2,7 @@
     <% if (it.resume.settings?.labels?.categoryProperty?.basics?.categoryTitle) { %>
         <header class="section__title section--hide-toc"><%= it.resume.settings.labels.categoryProperty.basics.categoryTitle %></header>
     <% } %>
-    <div class="article-container">
+    <div class="article-container default">
         <%~ include('nav', {categoryKey: it.resume?.settings?.categoryKeys?.basics}) %>
         <div class="left">
             <%~ include('profile-picture', {

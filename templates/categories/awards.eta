@@ -1,12 +1,12 @@
 <section id="awards" class="awards">
 	<% if(it.resume.settings?.labels?.categoryProperty?.award?.categoryTitle) { %>
-		<header class="section__title">
+		<header>
 			<%= it.resume.settings.labels.categoryProperty.award.categoryTitle %>
 		</header>
 	<% } %>
-	<div class="article-container">
+	<div class="article-container default">
 		<% it.resume?.awards.forEach(function(award) { %>
-			<article class="two-column">
+			<article class="with-header-date">
 				<%~ include('nav', {categoryKey: it.resume.settings?.categoryKeys?.award, id: award.id, showDelete: true}) %>
 				<%~ include('key-value-item', {
 					label: it.resume.settings?.labels?.categoryProperty?.award?.date, 

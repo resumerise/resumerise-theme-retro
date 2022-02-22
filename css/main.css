@@ -46,6 +46,10 @@
     */
     --text-light-color: #ada39f;
     /* 
+    Label color 
+    */
+    --text-label-color: #595a7a;
+    /* 
     Body text color
     */
     --body-color: #fefcfb;
@@ -68,15 +72,15 @@
     /* 
     H1 font size
     */
-    --h1-font-size: 1.5rem;
+    --h1-font-size: 1.4rem;
     /* 
     H2 font size
     */
-    --h2-font-size: 1.25rem;
+    --h2-font-size: 1.3rem;
     /* 
     H3 font size
     */
-    --h3-font-size: 1.125rem;
+    --h3-font-size: 1.1rem;
     /* 
     Normal font size
     */
@@ -110,7 +114,7 @@
     */
     --label-width: 7em;
     /*
-    Vertical/Horiontal gap between articles withint two-column container
+    Vertical/Horiontal gap between articles
     */
     --article-container-row-gap: 3em;
     /*
@@ -294,7 +298,7 @@ main {
 }
 
 /*======================================== SECTION ========================================*/
-.section__title {
+section header {
     position: relative;
     font-size: var(--h1-font-size);
     color: var(--article-title-color);
@@ -327,7 +331,6 @@ main {
 }
 
 .article__subtitle {
-    font-weight: var(--font-700);
     font-size: var(--h3-font-size);
     font-family: var(--second-font);
     color: var(--home-title-color);
@@ -338,12 +341,11 @@ main {
 }
 
 .article__list {
-    display: flex;
     flex-direction: row;
 }
 
 .article__list label {
-    min-width: var(--label-width);
+    color: var(--text-label-color);
 }
 
 .article__list ul {
@@ -371,10 +373,20 @@ main {
     margin-top: var(--mb-1);
 }
 
-.article-container:not(.two-column) {
+.article-container article {
+    display: flex;
+    flex-direction: column;
+    gap: var(--article-row-gap);
+}
+
+.article-container.default {
     display: flex;
     flex-direction: column;
     gap: var(--article-container-row-gap);
+}
+
+.article-container .article__list label {
+    color: var();
 }
 
 /*========== PROFILES ==========*/
@@ -512,7 +524,7 @@ main {
         align-items: center;
     }
 
-    article.three-column {
+    article.with-header-date-logo {
         display: grid;
         align-items: flex-start;
         grid-template-areas: 
@@ -523,7 +535,7 @@ main {
         grid-template-columns: auto var(--article-logo-width);
     }
 
-    article.two-column {
+    article.with-header-date {
         display: grid;
         align-items: flex-start;
         grid-template-areas: 
@@ -545,6 +557,11 @@ main {
     .article__date {
         grid-area: date;
         display: flex;
+        flex-direction: column;
+    }
+
+    .article__date .date {
+        display: flex;
         flex-direction: row;
         gap: var(--date-gap);
     }
@@ -556,6 +573,18 @@ main {
 
 /*~~~~~~~~~~~~~ desktop ~~~~~~~~~~~~~*/
 @media screen and (min-width: 992px) {
+    :root {
+        --biggest-font-size: 5rem;
+        --bigger-font-size: 4rem;
+        --home-title-font-size: 3rem;
+        --h1-font-size: 1.85rem;
+        --h2-font-size: 1.5rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --small-font-size: .875rem;
+        --smaller-font-size: .813rem;
+    }
+
     body {
         padding: var(--body-padding-md) calc(var(--body-padding-md) * 1.2);
     }
@@ -570,16 +599,13 @@ main {
 
 /*~~~~~~~~~~~~~ > tablets + desktop & print ~~~~~~~~~~~~~*/
 @media print, screen and (min-width: 768px) {
-    :root {
-        --biggest-font-size: 5rem;
-        --bigger-font-size: 4rem;
-        --home-title-font-size: 3rem;
-        --h1-font-size: 2.25rem;
-        --h2-font-size: 1.5rem;
-        --h3-font-size: 1.25rem;
-        --normal-font-size: 1rem;
-        --small-font-size: .875rem;
-        --smaller-font-size: .813rem;
+    .article-container .article__list {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .article-container .article__list label {
+        min-width: var(--label-width);
     }
 
     .article-container.two-column {
@@ -597,8 +623,14 @@ main {
         page-break-inside: avoid;
         break-inside: avoid;
     }
+
+    .article-container.three-column {
+        -moz-column-count: 3;
+        -webkit-column-count: 3;
+        column-count: 3;
+    }
     
-    article.three-column {
+    article.with-header-date-logo {
         display: grid;
         align-items: flex-start;
         grid-template-areas: 
@@ -609,7 +641,7 @@ main {
         grid-template-columns: var(--article-date-width) auto var(--article-logo-width);
     }
 
-    article.two-column {
+    article.with-header-date {
         display: grid;
         align-items: flex-start;
         column-gap: var(--article-column-gap);
@@ -628,12 +660,24 @@ main {
         grid-area: logo;
     }
 
-    .article__date {
+    .article__date .date {
         grid-area: date;
         display: flex;
         flex-direction: column;
         text-align: center;
         gap: var(--date-gap);
+    }
+
+    .article__date .duration {
+        -webkit-column-break-inside: avoid;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        text-align: center;
+        font-size: var(--small-font-size);
+        border-radius: 0.3em;
+        border: 1px solid gray;
+        margin: 0.5em;
+        padding: 0.5em;
     }
 
     .article-content {
@@ -733,8 +777,12 @@ main {
         background-color: white;
     }
 
-    /* Cover */
-    @page: first {
+    .page-break {
+        break-after: page;
+    }
+
+    /* cover */
+    @page:first {
 
         @top-right {
             content: none;
@@ -751,10 +799,6 @@ main {
         @bottom-left {
             content: none;
         }
-    }
-
-    .page-break {
-        break-after: page;
     }
 
     .cover-page .main-skills {

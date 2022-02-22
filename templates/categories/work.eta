@@ -1,17 +1,24 @@
 <section id="work" class="work">
     <% if (it.resume.settings?.labels?.categoryProperty?.work?.categoryTitle) { %>
-        <header class="section__title"><%= it.resume.settings?.labels?.categoryProperty?.work?.categoryTitle %></header>
+        <header><%= it.resume.settings?.labels?.categoryProperty?.work?.categoryTitle %></header>
     <% } %>
-    <div class="article-container">
+    <div class="article-container default">
         <% it.resume?.work.forEach(function(work) { %>
-            <article class="three-column">
+            <article class="with-header-date-logo">
                 <%~ include('nav', {categoryKey: it.resume?.settings?.categoryKeys?.work, showDelete: true, id: work.id}) %>
-                <%~ include('date-range', {
-                    startDate: work.startDate,
-                    endDate: work.endDate,
-                    present: work.present,
-                    classes: 'article__date'
-                }) %>
+                <div class="article__date">
+                    <%~ include('date-range', {
+                        startDate: work.startDate,
+                        endDate: work.endDate,
+                        present: work.present,
+                        classes: 'date'
+                    }) %>
+                    <%~ include('key-value-item', {
+                        label: it.resume.settings?.labels?.durationLabel, 
+                        value: work.durationLabel,
+                        classes: 'article__text duration'
+                    }) %>
+                </div>
                 <div class="article-header">
                     <%~ include('key-value-item', {
                         label: it.resume.settings?.labels?.categoryProperty?.work?.company, 

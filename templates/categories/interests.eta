@@ -1,10 +1,10 @@
 <section id="interests" class="interests">
 	<% if(it.resume.settings?.labels?.categoryProperty?.interest?.categoryTitle) { %>
-		<header class="section__title">
+		<header>
 			<%= it.resume.settings.labels.categoryProperty.interest.categoryTitle %>
 		</header>
 	<% } %>
-	<div class="article-container two-column">
+	<div class="article-container three-column">
 		<% it.resume?.interests.forEach(function(interest) { %>
 			<article>
 				<%~ include('nav', {categoryKey: it.resume?.settings?.categoryKeys?.interest, showDelete: true, id: interest.id}) %>
