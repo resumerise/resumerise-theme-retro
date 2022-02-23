@@ -696,6 +696,40 @@ section header {
         font-size: var(--print-margin-font-size);
     }
 
+    /* main margin boxes */
+    .footer-print {
+        position: running(footerRunning);
+    }
+    .user-compact-print {
+        position: running(userCompactRunning);
+    }
+    .last-update-print {
+        position: running(lastUpdateRunning);
+    }
+    .available-from-print {
+        position: running(availableFromRunning);
+    }
+    
+    @page {
+        size: A4;
+        @top-right {
+            content: element(lastUpdateRunning);
+        }
+        @top-left {
+            content: element(userCompactRunning);
+        }
+        @bottom-right {
+            content: counter(page);
+        }
+        @bottom-left {
+            content: element(footerRunning);
+            width: 40mm;
+        }
+        @bottom-center {
+            content: element(availableFromRunning);
+        }
+    }
+
     /* table of contents */
     @page table-of-contents {
         @top-right {

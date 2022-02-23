@@ -11,39 +11,6 @@
 			<script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
 		<% } %>
 		<style>
-			/* PRINT */
-			.footer-print {
-				position: running(footerRunning);
-			}
-			.user-compact-print {
-				position: running(userCompactRunning);
-			}
-			.last-update-print {
-				position: running(lastUpdateRunning);
-			}
-			.available-from-print {
-				position: running(availableFromRunning);
-			}
-			@page {
-				size: A4;
-				@top-right {
-					content: element(lastUpdateRunning);
-				}
-				@top-left {
-					content: element(userCompactRunning);
-				}
-				@bottom-right {
-					content: counter(page);
-				}
-				@bottom-left {
-					content: element(footerRunning);
-					width: 40mm;
-				}
-				@bottom-center {
-					content: element(availableFromRunning);
-				}
-			}
-
 			<%~ it.mainCss %>
 			<%~ it.widgetCss %>
 		</style>
@@ -74,7 +41,7 @@
 				</p>
 				<!-- margin boxes (END) -->
 			<% } %>
-			<!-- Start of Main Content -->
+
 			<!-- BASICS -->
 			<%~ include("basic", {
 				resume: it.resume
