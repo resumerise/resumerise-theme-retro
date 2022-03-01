@@ -10,8 +10,7 @@
                     <%~ include('date-range', {
                         startDate: work.startDate,
                         endDate: work.endDate,
-                        present: work.present,
-                        classes: 'date'
+                        present: work.present
                     }) %>
                     <%~ include('key-value-item', {
                         label: it.resume.settings?.labels?.durationLabel, 

@@ -223,16 +223,6 @@ body {
     counter-reset: page 1;
 }
 
-::-moz-selection {
-    background: #5e5e5e;
-    color: white;
-}
-
-::selection {
-    background: #5e5e5e;
-    color: white;
-}
-
 h1, h2, h3, ul, p {
     margin: 0;
 }
@@ -835,6 +825,17 @@ section header {
         }
     }
 
+    .cover-page {
+        page: cover-page;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 4cm;
+        align-content: center;
+        gap: 2cm;
+    }
+
     .cover-page .main-skills {
         display: flex;
         flex-direction: column;
@@ -860,16 +861,6 @@ section header {
         list-style-type: none;
         margin: 0;
         padding: 0;
-    }
-
-    .cover-page {
-        page: cover-page;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        align-content: center;
-        gap: 2cm;
     }
 
     .cover-page__main-skills {
