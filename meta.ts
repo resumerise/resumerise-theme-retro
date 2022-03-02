@@ -1,4 +1,4 @@
-import { ResumeriseMeta } from "./library.ts";
+import { ResumeriseMeta } from "./core-library.ts";
 
 export const meta = {
   colors: ["#000", "#fff"],
