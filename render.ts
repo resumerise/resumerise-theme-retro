@@ -1,8 +1,6 @@
 import * as eta from "https://deno.land/x/eta@v1.6.0/mod.ts";
 import {
-  CompileException,
   getAddItemTemplatePath,
-  getFileContent,
   getNavTemplatePath,
   getProfileItem,
   getWidgetCSSFilePath,
@@ -12,8 +10,13 @@ import {
   getWidgetKeyValuePairFilePath,
   getWidgetListFilePath,
   getWidgetSkillListFilePath,
+} from "./theme-library.ts";
+
+import {
   Resume,
-} from "./library.ts";
+  CompileException,
+  getFileContent
+} from "./core-library.ts";
 
 export const render = async (
   resume: Resume,
