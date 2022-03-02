@@ -12,8 +12,8 @@ import {
   getWidgetKeyValuePairFilePath,
   getWidgetListFilePath,
   getWidgetSkillListFilePath,
-} from "resumerise_library/mod.ts";
-import { Resume } from "resumerise_library/codegen/model/resume.ts";
+  Resume,
+} from "./library.ts";
 
 export const render = async (
   resume: Resume,
